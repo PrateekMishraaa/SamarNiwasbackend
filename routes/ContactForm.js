@@ -1,9 +1,10 @@
-import express from 'express';
-const router = express.Router();
+import express from "express";
 import Contact from "../models/ContactForm.js";
 
+const router = express.Router();
+
 // Route to handle contact form submission
-router.post("/contact", async (req, res) => {
+router.post("/", async (req, res) => {
     const { FullName, Email, MobileNumber, Message } = req.body;
 
     if (!FullName || !Email || !MobileNumber || !Message) {
@@ -14,29 +15,28 @@ router.post("/contact", async (req, res) => {
             FullName,
             MobileNumber,
             Email,
-            Message
+            Message,
         });
 
-        console.log(NewMessage); // Logs the actual saved document
-
+        console.log("New Contact Message:", NewMessage);
         res.status(201).json({ message: "Message sent successfully", NewMessage });
     } catch (error) {
-        console.log(error);
+        console.error("Error in contact submission:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
 
 // Route to delete a message by ID
-router.delete("/delete/:id", async (req, res) => {
-    const { id } = req.params; // Get ID from route params
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
     try {
         const deletedMessage = await Contact.findByIdAndDelete(id);
         if (!deletedMessage) {
             return res.status(404).json({ message: "No message found with this ID" });
         }
         res.status(200).json({ message: "Message deleted successfully", deletedMessage });
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+        console.error("Error deleting message:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
