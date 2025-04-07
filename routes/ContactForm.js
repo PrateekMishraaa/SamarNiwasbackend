@@ -1,5 +1,6 @@
 import express from "express";
 import Contact from "../models/ContactForm.js";
+import User from "../models/User.js";
 
 const router = express.Router();
 
@@ -40,5 +41,6 @@ router.delete("/:id", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 export default router;
