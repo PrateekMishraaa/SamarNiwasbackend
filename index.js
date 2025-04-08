@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ CORS Configuration
 const corsOptions = {
-  origin: ["https://samarniwasdehradun.com", "https://samarniwasbackend-4.onrender.com"],
+  origin: ["http://localhost:5173", "https://samarniwasbackend-4.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // only needed if you're using cookies or auth headers
