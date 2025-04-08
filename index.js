@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import ContactRouter from "./routes/ContactForm.js";
 import PriceRouter from "./routes/Price.js";
 import Room from "./routes/Room.js"
-import User from "./routes/User.js"
+
 dotenv.config();
 
 const app = express();
@@ -31,7 +31,7 @@ mongoose
 app.use("/api/contact", ContactRouter); // ✅ Corrected API route
 app.use("/api/price", PriceRouter);
 app.use("/api",Room)
-app.use("/api",User)
+
 app.get("/", (req, res) => {
     res.send("🚀 Server is running!");
 });
